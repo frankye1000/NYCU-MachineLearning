@@ -1,9 +1,11 @@
 import os
 import numpy as np
+from newton import newton
+from plot import print_fittingline_totalerror
 
-path = "D:\\NYCU-MachineLearning\\HW1"#input('path= ')
+path = "D:\\NYCU\\NYCU-MachineLearning\\HW1"#input('path= ')
 name = "testfile.txt"#input('name= ')
-poly_basis = 4#int(input('n= '))
+n = 4#int(input('n= '))
 Lambda = 2#int(input('Lambda= '))
 
 # 讀資料
@@ -19,7 +21,7 @@ with open(filepath) as f:
 A = []
 for v in x0:
     r = []
-    for i in range(poly_basis):
+    for i in range(n):
         r.append(v ** i)
     A.append(r)
 
@@ -27,6 +29,15 @@ A = np.array(A)
 b = np.array(b).reshape((-1,1))
 print(A)
 print(b)
+
+
+# Netwon's method
+parameters_newton, loss_newton = newton(A,b)
+print('Newton\'s Method:')
+print_fittingline_totalerror(n-1, parameters_newton, loss_newton)
+# plot(x1.reshape(-1), b.reshape(-1), parameters_rlse.reshape(-1),parameters_newton.reshape(-1))
+
+
 
 
 # if __name__ == '__main__':
