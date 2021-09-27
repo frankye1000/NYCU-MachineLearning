@@ -3,10 +3,11 @@ import numpy as np
 from algo import lse, newton
 from plot import print_fittingline_totalerror, plot
 
-path = "D:\\NYCU\\NYCU-MachineLearning\\HW1"#input('path = ')
-name = "testfile.txt"#input('name = ')
-n = 3#int(input('n = '))
-Lambda = 0#int(input('Lambda = '))
+# 輸入需要訊息
+path = input('path = ')
+name = input('name = ')
+n = int(input('n = '))
+Lambda = int(input('Lambda = '))
 
 # 讀資料
 x0=[]
@@ -17,6 +18,7 @@ with open(filepath) as f:
         s = line.split(',')
         x0.append(float(s[0]))
         b.append(float(s[1]))
+
 # 做矩陣A
 A = []
 for v in x0:
@@ -27,7 +29,6 @@ for v in x0:
 
 A = np.array(A)
 b = np.array(b).reshape((-1,1))
-
 
 # lse
 print("lse:")
@@ -42,10 +43,3 @@ print_fittingline_totalerror(n-1, parameters_newton, loss_newton)
 
 # plot
 plot(x0, b, parameters_lse, parameters_newton)
-
-
-
-
-# if __name__ == '__main__':
-#     # iuput testfile data 
-    
