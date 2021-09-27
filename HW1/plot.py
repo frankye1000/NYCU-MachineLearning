@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 
 def print_fittingline_totalerror(n, parameters, loss):
     print("Fitting line: ", end = '')
+
+    parameters = list(parameters)[::-1]
     for i, parameter in enumerate(parameters):
         if n-i == 0:
             print(parameter[0])
@@ -13,22 +15,23 @@ def print_fittingline_totalerror(n, parameters, loss):
     print('Total error: ', loss)
 
 
-def plot(x1,b,parameters_rlse,parameters_newton):
-    #rlse
-    plt.subplot(2,1,1)
-    plt.title('rlse')
-    plt.plot(x1,b,'ro')
-    x1_min=min(x1)
-    x1_max=max(x1)
-    x=np.linspace(x1_min-1,x1_max+1,500)
-    y=np.zeros(x.shape)
-    for i in range(len(parameters_rlse)):
-        y+=parameters_rlse[i]*np.power(x,i)
-    plt.plot(x,y,'-k')
+def plot(x0, b, parameters_lse, parameters_newton):
+    # lse
+    plt.subplot(2, 1, 1)
+    plt.title('lse')
+    plt.plot(x0, b, 'ro')
+    x0_min = min(x0)
+    x0_max = max(x0)   
+    x = np.arange(x0_min-1, x0_max+1, 0.1)          # x軸點數(畫線)
+    y = np.zeros(x.shape)
+    for i in range(len(parameters_lse)):
+        y += parameters_lse[i]*np.power(x,i)        # y軸數值(依照fittingline計算)
+    plt.plot(x, y, '-k')
+
     #newton
-    plt.subplot(2,1,2)
-    plt.title('newton\'s method')
-    plt.plot(x1, b, 'ro')
+    plt.subplot(2, 1, 2)
+    plt.title("newton's method")
+    plt.plot(x0, b, 'ro')
     y = np.zeros(x.shape)
     for i in range(len(parameters_newton)):
         y += parameters_newton[i] * np.power(x, i)

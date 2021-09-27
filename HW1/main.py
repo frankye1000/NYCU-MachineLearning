@@ -1,12 +1,12 @@
 import os
 import numpy as np
-from newton import newton
-from plot import print_fittingline_totalerror
+from algo import lse, newton
+from plot import print_fittingline_totalerror, plot
 
-path = "D:\\NYCU\\NYCU-MachineLearning\\HW1"#input('path= ')
-name = "testfile.txt"#input('name= ')
-n = 4#int(input('n= '))
-Lambda = 2#int(input('Lambda= '))
+path = "D:\\NYCU\\NYCU-MachineLearning\\HW1"#input('path = ')
+name = "testfile.txt"#input('name = ')
+n = 3#int(input('n = '))
+Lambda = 0#int(input('Lambda = '))
 
 # 讀資料
 x0=[]
@@ -27,15 +27,21 @@ for v in x0:
 
 A = np.array(A)
 b = np.array(b).reshape((-1,1))
-print(A)
-print(b)
 
+
+# lse
+print("lse:")
+parameters_lse, loss_lse = lse(A, b, n, Lambda)
+print_fittingline_totalerror(n-1, parameters_lse, loss_lse)
+print()
 
 # Netwon's method
-parameters_newton, loss_newton = newton(A,b)
-print('Newton\'s Method:')
+print("Newton's Method:")
+parameters_newton, loss_newton = newton(A, b, n)
 print_fittingline_totalerror(n-1, parameters_newton, loss_newton)
-# plot(x1.reshape(-1), b.reshape(-1), parameters_rlse.reshape(-1),parameters_newton.reshape(-1))
+
+# plot
+plot(x0, b, parameters_lse, parameters_newton)
 
 
 
