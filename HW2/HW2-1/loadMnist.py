@@ -9,19 +9,19 @@ def load():
     (train_x,train_y),(test_x,test_y)=load_data()
     return (train_x,train_y),(test_x,test_y)
     '''
-    train_x_file=open('data/train-images.idx3-ubyte','rb')
-    train_y_file=open('data/train-labels.idx1-ubyte','rb')
-    test_x_file=open('data/t10k-images.idx3-ubyte','rb')
-    test_y_file=open('data/t10k-labels.idx1-ubyte','rb')
+    train_x_file = open('data/train-images.idx3-ubyte', 'rb')
+    train_y_file = open('data/train-labels.idx1-ubyte', 'rb')
+    test_x_file = open('data/t10k-images.idx3-ubyte', 'rb')
+    test_y_file = open('data/t10k-labels.idx1-ubyte', 'rb')
 
     #train_x,train_y
     train_x_file.read(16)                              # 影象檔案的前16個位元組是header
     train_y_file.read(8)                               # 標籤檔案的前8個位元組是header
-    train_x=np.zeros((60000, 28*28), dtype='uint8')    # 共60000張圖片
-    train_y=np.zeros(60000, dtype='uint8')
+    train_x = np.zeros((60000, 28*28), dtype='uint8')    # 共60000張圖片
+    train_y = np.zeros(60000, dtype='uint8')
     for i in range(1):
         for j in range(28*28):
-            print(train_x_file.read(1))
+            print(int.from_bytes(train_x_file.read(1), byteorder='big'))
             train_x[i,j]=int.from_bytes(train_x_file.read(1), byteorder='big')
         train_y[i]=int.from_bytes(train_y_file.read(1),byteorder='big')
 
