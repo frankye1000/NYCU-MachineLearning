@@ -5,7 +5,7 @@ import numpy as np
 def load_images(filepath):
     binfile = open(filepath, "rb")
     buffers = binfile.read()
-    # 解析headers(16 bytes)
+    # 解析headers(16 bytes)，">"是big endian
     magic, num, rows, cols = struct.unpack_from(">iiii", buffers, 0)
     bits = num * rows * cols
     # 解析全部，從offset 0016 開始
