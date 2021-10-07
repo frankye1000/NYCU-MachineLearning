@@ -29,7 +29,7 @@ def run(train_data, train_label, test_data, test_label):
         temp = train_data[train_label==label]  # 挑出各別label資料算各pixel mean&var
         mean = np.mean(temp, axis=0)
         var  = np.var(temp, axis=0)
-        var[var==0] = 10  # TODO=?????         # var有0，在計算高斯機率時會divide by zero，所以假設一個很接近0的值?????
+        var[var==0] = 100000                   # 將var設大，這樣就讓"該pixel" "該灰階色調" 條件機率變小，降低影響
         for i in range(784):
             for pixel_range in range(256):
                 condiction_probability3D[label][i][pixel_range] = gussian(pixel_range, mean[i], var[i])   # 高斯機率算每個pixel機率
