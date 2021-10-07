@@ -6,6 +6,7 @@ def factorial(x):
         r = r * i
     return r 
 
+
 def combination(N, m):
     return int(factorial(N)/(factorial(m)*factorial(N-m)))
 

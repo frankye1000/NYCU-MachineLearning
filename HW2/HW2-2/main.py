@@ -1,10 +1,10 @@
 import os
 from function import combination
 
-path = "D:\\NYCU\\NYCU-MachineLearning\\HW2\\HW2-2"#input('path: ')
-name = "testfile.txt"#input('name: ')
-a = 0#int(input('a: '))
-b = 0#int(input('b: '))
+path = input('path: ')
+name = input('name: ')
+a = int(input('a: '))
+b = int(input('b: '))
 
 filepath = os.path.join(path, name)
 
