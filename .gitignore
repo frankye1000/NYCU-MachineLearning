@@ -1,2 +1,5 @@
 # 忽略所有 Book 目錄
 Book
+*.npy
+npy
+Handout
