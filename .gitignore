@@ -2,3 +2,5 @@
 Book
 *.npy
 npy
+mnist2500_X.txt
+mnist2500_labels.txt
